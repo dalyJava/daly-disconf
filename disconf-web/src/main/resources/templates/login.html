@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <title>disconf-management </title>
+  <link rel="shortcut icon" href="img/favicon.ico">
+</head>
+
+<body>
+<!--====================================================
+                        PAGE CONTENT
+======================================================-->
+<section class="hero-area" id="box" v-cloak>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="contact-h-cont">
+          <h3 class="text-center"><img src="/img/logo.png" class="img-fluid" alt=""></h3><br>
+            <div class="form-group">
+              <label for="username">用户名：</label>
+              <input type="text" class="form-control" id="username" v-model="username"
+                     placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+              <label for="password">密码：</label>
+              <input id="password" class="form-control" type="password" v-model="password"
+                     placeholder="请输入密码">
+            </div>
+            <div class="form-group">
+              <label for="verifyCode">验证码：</label>
+              <div>
+                <input  id="verifyCode" class="form-control col-sm-8" type="text" v-model="verifyCode"
+                       placeholder="请输入验证码">
+                <img id="verifyCodeUrl"  v-on:click="getVerifyCode()"  v-bind:src="verifyCodeUrl" />
+              </div>
+            </div>
+            <button style="border: 1px solid #2196f3" class="btn btn-general btn-blue" v-on:click="login()">
+              <i fa fa-right-arrow></i>Login
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script data-main="js/login.js" src="../plug-in/require/require.js"></script>
+</body>
+
+</html>

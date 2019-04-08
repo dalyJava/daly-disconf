@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="all,follow">
+  <title>index </title>
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+</head>
+<body>
+<div id="box">
+  <div class="row">
+    <aside class="col-2">
+      <label for="appItems">请选择app</label>
+      <select id="appItems" v-on:change="seletedApp(this)" class="selectpicker form-control"
+              data-live-search="true">
+      </select>
+      <hr style="border-top: 2px solid #007bff;margin-top: 20px;">
+      <!-- app 环境列表 -->
+      <ul class="list-group">
+        <template v-for="item in envItems">
+          <li class="list-group-item">
+            <a v-on:click="getEnvConfig(appIdSelected,item.id)"> <i class="fa fa-e"></i>
+              {{item.name}}
+            </a>
+          </li>
+        </template>
+      </ul>
+    </aside>
+
+    <aside class="col-10">
+      <!--<ul class="nav nav-tabs" id="myTab" role="tablist">-->
+      <!--<template v-for="(item,index) in versionItems">-->
+      <!--<li class="nav-item">-->
+      <!--<template v-if="index == 0">-->
+      <!--<a class="nav-link active" v-on:click="changeConfigItem(item)">-->
+      <!--<h6>{{item}}</h6>-->
+      <!--</a>-->
+      <!--</template>-->
+      <!--<template v-else>-->
+      <!--<a class="nav-link" v-on:click="changeConfigItem(item)">-->
+      <!--<h6>{{item}}</h6>-->
+      <!--</a>-->
+      <!--</template>-->
+      <!--</li>-->
+      <!--</template>-->
+      <!--</ul>-->
+      <!--<div  class="tab-content border border-top-0" >-->
+
+      <!--</div>-->
+
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" v-for="(item,index) in versionItems">
+
+          <template v-if="index == 0">
+            <a class="nav-link active" v-on:click="changeConfigItem(item)" data-toggle="tab"
+               role="tab">
+              <h6>{{item}}</h6>
+            </a>
+          </template>
+          <template v-else>
+            <a class="nav-link " v-on:click="changeConfigItem(item)" data-toggle="tab" role="tab">
+              <h6>{{item}}</h6>
+            </a>
+          </template>
+
+        </li>
+      </ul>
+      <div class="tab-content border border-top-0" id="myTabContent">
+        <table id="table" class="table table-sm table-bordered table-hover">
+          <thead>
+          <tr>
+            <th data-field="index">序号</th>
+            <th data-field="KEY">KEY</th>
+            <th data-field="KEY">配置内容</th>
+            <th data-field="KEY">实例列表</th>
+            <th data-field="KEY">修改时间</th>
+            <th data-field="KEY">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <template v-for="(item,index) in configItems">
+            <tr v-bind:data-index="index">
+              <td >{{index}}</td>
+              <td >{{item.name}}</td>
+              <td v-bind:title="item.value"><a href="#">查看内容</a></td>
+              <td ></td>
+              <td >{{item.createTime}}</td>
+              <td >
+                <div class="btn-group">
+                  <button v-on:click="upDateConfig(item.id)" type="button" class="btn btn-sm btn-outline-warning">修改</button>
+                  <button v-on:click="downloadConfig(item.id)" type="button" class="btn btn-sm btn-outline-primary">下载</button>
+                  <button v-on:click="delConfig(item.id)" type="button" class="btn btn-sm btn-outline-danger">删除</button>
+                </div>
+              </td>
+            </tr>
+          </template>
+          </tbody>
+        </table>
+      </div>
+
+    </aside>
+  </div>
+</div>
+</body>
+<script data-main="js/config.js" src="../plug-in/require/require.js"></script>
+</html>
